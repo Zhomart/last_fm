@@ -49,6 +49,11 @@ class LastFM
     "http://www.last.fm/api/auth/?api_key=#{api_key}&token=#{@token}"
   end
 
+  # Returns list of tracks with partial track/artist info.
+  # It doesn't need authentication.
+  #
+  # http://www.last.fm/api/show/user.getTopTracks
+  #
   def get_top_tracks(limit = 50)
     url = api_url("user.gettoptracks", user: "mukhamejanov", limit: limit)
 
@@ -58,6 +63,7 @@ class LastFM
     response['toptracks']['track']
   end
 
+  # Create playlist in ./playlists/ directory
   #
   # @param name - playlist name
   # @param tracks - array of hashes in format { 'name' => "Magia", 'artist' => { 'name' => 'Kalafina' } }
